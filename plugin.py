@@ -273,7 +273,7 @@ class Gitlab(callbacks.Plugin):
 
     def __init__(self, irc):
         global instance
-        super().__init__(irc)
+        super(Gitlab, self).__init__(irc)
         instance = self
 
         callback = GitlabWebHookService(self)
@@ -282,7 +282,7 @@ class Gitlab(callbacks.Plugin):
     def die(self):
         httpserver.unhook('gitlab')
 
-        super().die()
+        super(Gitlab, self).die()
 
     def _load_projects(self, channel):
         projects = self.registryValue('projects', channel)
